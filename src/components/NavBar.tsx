@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User, ShoppingCart } from "lucide-react";
 
+import SearchInput from "./SearchInput";
 import Button from "./Button";
 
 export default function NavBar() {
@@ -38,7 +39,7 @@ export default function NavBar() {
                 width={40}
                 height={40}
             />
-            <nav className="flex items-center bg-c3 h-[40px] px-[10px] gap-[10px] rounded-[10px]">
+            <nav className="flex items-center bg-c3 h-[40px] px-[10px] gap-[10px] shadow-[0_0_0_2px] shadow-c1 rounded-[10px]">
                 {links.map((link) => (
                     <Link
                         key={link.href}
@@ -53,10 +54,8 @@ export default function NavBar() {
                     </Link>
                 ))}
             </nav>
-            <input
-                type="text"
+            <SearchInput
                 placeholder="Pesquise por algum jogo..."
-                className="w-full outline-0 px-[10px] border-2 border-c1 rounded-[10px] bg-c0 text-c5 border-blue-[5px]"
             />
             <Button 
                 icon={<ShoppingCart size={18} />}

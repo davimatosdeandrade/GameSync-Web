@@ -8,3 +8,21 @@
     --color-c4: #b7b7b7;
     --color-c5: #777777;
 }
+
+@layer base {
+    h1 {
+        @apply text-c4 text-[20px] font-semibold;
+    }
+
+    h4 {
+        @apply text-c4 font-medium;
+    }
+
+    h5 {
+        @apply text-c4 font-light;
+    }
+
+    p {
+        @apply text-c5;
+    }
+}
