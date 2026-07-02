@@ -1,28 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-    --color-c0: #0b0b0b;
-    --color-c1: #171717;
-    --color-c2: #111111;
-    --color-c3: #242323;
-    --color-c4: #b7b7b7;
-    --color-c5: #777777;
+    --color-bg1: #0b0b0b;
+    --color-bg2: #171717;
+
+    --color-main: #111111;
+    --color-button: #242323;
+    --color-icon: #b7b7b7;
+
+    --color-title: #ffffff;
+    --color-text1: #c8c8c8;
+    --color-text2: #7a7a7a;
+    --color-placeholder: #4a4a4a;
 }
 
 @layer base {
     h1 {
-        @apply text-c4 text-[20px] font-semibold;
+        @apply text-title text-[20px] font-[600];
+    }
+
+    h2 {
+        @apply text-text1 text-[14px] font-[400];
+    }
+
+    h3 {
+        @apply text-text1 text-[14px] font-[600];
     }
 
     h4 {
-        @apply text-c4 font-medium;
+        @apply text-text2 text-[14px] font-[400];
     }
+}
 
-    h5 {
-        @apply text-c4 font-light;
-    }
-
-    p {
-        @apply text-c5;
-    }
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-button) transparent;
 }

@@ -21,7 +21,7 @@ export default function Carousel({ name, products }: CarouselProps) {
                 title={name}
             />
             <Swiper
-                slidesPerView={2.333}
+                slidesPerView={2.3}
                 spaceBetween={10}
                 slidesOffsetBefore={20}
                 slidesOffsetAfter={20}

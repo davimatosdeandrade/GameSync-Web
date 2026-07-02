@@ -5,7 +5,7 @@ interface TitleProps {
 
 export default function Title({ title, buttons }: TitleProps) {
     return(
-        <div className="flex items-center w-full h-[40px] gap-[10px] px-[20px]">
+        <div className="flex items-center w-full min-h-[37px] gap-[10px] px-[20px]">
             {title != null && (
                 <h1>
                     {title}
