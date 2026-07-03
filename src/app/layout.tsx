@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
 import NavBar from "../components/NavBar";
-import Title from "../components/Title";
-import SearchInput from "../components/SearchInput";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -31,15 +28,9 @@ export default function RootLayout({
             lang="en"
             className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
         >
-            <body className="bg-bg1 py-[10px] pl-[57px]">
+            <body className="bg-bg1 pb-[20px] pt-[57px]">
+                <div className="fixed bottom-0 z-2 w-full h-[40px] bg-linear-to-t from-bg1 to-bg1/0"/>
                 <NavBar />
-                <Title
-                    buttons={
-                        <SearchInput 
-                            placeholder="Pesquise..."
-                        />
-                    }
-                />
                 {children}
             </body>
         </html>

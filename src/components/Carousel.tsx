@@ -1,39 +1,47 @@
 "use client"
-
 import { Product } from "../types/product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/pagination'
-import { Pagination } from "swiper/modules";
+import { Pagination, Keyboard, Autoplay } from "swiper/modules";
 
 import Title from "./Title";
 import CardProduct from "./CardProduct";
 
 interface CarouselProps {
-    name: string;
+    name?: string;
     products: Product[];
+    aspect: "916" | "169" | "219";
 }
 
-export default function Carousel({ name, products }: CarouselProps) {
+export default function Carousel({ name, products, aspect }: CarouselProps) {
+    const slidesPerViewCarousel = {
+        "916": 7,
+        "169": 2.333,
+        "219": 1
+    }
+
     return(
         <div className="w-full">
-            <Title
-                title={name}
-            />
+            {name != null && 
+                <Title
+                    title={name}
+                />
+            }
             <Swiper
-                slidesPerView={2.3}
-                spaceBetween={10}
-                slidesOffsetBefore={20}
-                slidesOffsetAfter={20}
-                modules={[Pagination]}
-                className="w-full mt-[10px]"
+                slidesPerView={slidesPerViewCarousel[aspect]}
+                spaceBetween={20}
+                slidesOffsetBefore={40}
+                slidesOffsetAfter={40}
+                modules={[Pagination, Keyboard, Autoplay]}
+                className={`w-full ${name == null && "mt-[20px]"}`}
             >
                 {products.map((product) => (
-                    <SwiperSlide className="h-[1000px]">
+                    <SwiperSlide>
                         <CardProduct 
                             key={product.id}
                             product={product}
-                            size="featured"
+                            aspect={aspect}
                         />
                     </SwiperSlide>
                 ))}
@@ -41,3 +49,4 @@ export default function Carousel({ name, products }: CarouselProps) {
         </div>
     )
 }
+

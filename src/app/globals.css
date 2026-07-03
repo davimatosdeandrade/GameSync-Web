@@ -4,7 +4,7 @@
     --color-bg1: #0b0b0b;
     --color-bg2: #171717;
 
-    --color-main: #111111;
+    --color-main: #171717;
     --color-button: #242323;
     --color-icon: #b7b7b7;
 
@@ -24,7 +24,7 @@
     }
 
     h3 {
-        @apply text-text1 text-[14px] font-[600];
+        @apply text-text1 text-[14px] font-[500];
     }
 
     h4 {
