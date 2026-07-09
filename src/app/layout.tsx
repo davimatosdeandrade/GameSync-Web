@@ -28,7 +28,7 @@ export default function RootLayout({
             lang="en"
             className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
         >
-            <body className="bg-bg1 pb-[20px] pt-[57px]">
+            <body className="bg-bg1 pb-[20px]">
                 <div className="fixed bottom-0 z-2 w-full h-[40px] bg-linear-to-t from-bg1 to-bg1/0"/>
                 <NavBar />
                 {children}

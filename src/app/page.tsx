@@ -30,8 +30,10 @@ export default function Home() {
         <>
         <Carousel
             key={1}
+            name="Destaques"
             products={teste}
             aspect="219"
+            slidesPerView={1.166}
         />
         <div className="flex flex-wrap">
             {mockHighlights.map((highlight) => (
@@ -40,6 +42,7 @@ export default function Home() {
                     name={highlight.name}
                     products={highlight.products}
                     aspect="169"
+                    slidesPerView={2.333}
                 />
             ))}
         </div>

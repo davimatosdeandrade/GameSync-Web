@@ -26,18 +26,7 @@ export default function NavBar() {
     }, [])
 
     return (
-        <div className="fixed z-3 top-0 left-0 flex bg-linear-to-b from-bg1 to-bg1/0 justify-center items-center w-full h-[77px] px-[40px] gap-[20px]">
-            <div className="absolute left-[40px] flex gap-[20px]">
-                <div className="h-[37px] px-[20px] bg-main shadow-[0_0_0_2px] shadow-main rounded-[20px]">
-                    <h1>Destaques</h1>
-                </div>
-                {scrolled &&
-                <Button
-                    icon={<ArrowUp size={14}/>}
-                    size="default"
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                />}
-            </div>
+        <div className="fixed z-4 top-0 left-1/2 -translate-x-1/2 flex justify-center items-center h-[77px] px-[20px] gap-[20px] [background:radial-gradient(ellipse,rgba(0,0,0,1)_0%,transparent_70%)]">       
             <SearchInput placeholder="Pesquise..." />
             {links.map((link) => (
                 <Button

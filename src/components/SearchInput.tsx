@@ -7,7 +7,7 @@ interface SearchInputProps {
 export default function SearchInput({ placeholder }: SearchInputProps) {
 
     return(
-        <div className={`relative h-[37px] w-[calc((100%-40px)/5)] rounded-full bg-bg2 shadow-[0_0_0_2px] shadow-button hover:shadow-icon text-text2 hover:text-icon hover:cursor-pointer`}>
+        <div className={`relative h-[37px] min-w-[calc((100vw-40px)/5)] rounded-full bg-bg2 shadow-[0_0_0_2px] shadow-button hover:shadow-icon text-text2 hover:text-icon hover:cursor-pointer`}>
             <input
                 type="text"
                 placeholder={placeholder}
