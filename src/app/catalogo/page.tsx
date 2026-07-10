@@ -15,38 +15,37 @@ export default function CatalogoPage() {
             <Button 
                 icon={<ChevronDown size={14} />} 
                 text="Plataforma"
-                size="featured"
                 options={["teste", "teste", "teste"]}
             />
             <Button 
                 icon={<ChevronDown size={14} />} 
                 text="Ativação"
-                size="featured"
+                options={["teste", "teste", "teste"]}
             />
             <Button 
                 icon={<ChevronDown size={14} />} 
                 text="Sistema"
-                size="featured"
+                options={["teste", "teste", "teste"]}
             />
             <Button 
                 icon={<ChevronDown size={14} />} 
                 text="Tipo"
-                size="featured"
+                options={["teste", "teste", "teste"]}
             />
             <Button 
                 icon={<ChevronDown size={14} />} 
                 text="Categorias"
-                size="featured"
+                options={["teste", "teste", "teste"]}
             />
             <Button 
                 icon={<ChevronDown size={14} />} 
                 text="Distribuidor"
-                size="featured"
+                options={["teste", "teste", "teste"]}
             />
             <Button 
                 icon={<ChevronDown size={14} />} 
                 text="Preço"
-                size="featured"
+                options={["teste", "teste", "teste"]}
             />
         </div>
         <div className="grid grid-cols-7 gap-[20px] w-full px-[40px]">

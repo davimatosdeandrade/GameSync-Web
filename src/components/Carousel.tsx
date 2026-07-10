@@ -45,4 +45,3 @@ export default function Carousel({ name, products, aspect, slidesPerView}: Carou
         </div>
     )
 }
-

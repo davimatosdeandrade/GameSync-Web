@@ -32,7 +32,6 @@ export default function NavBar() {
                 <Button
                     key={link.href}
                     icon={link.icon}
-                    size="default"
                     active={pathname === link.href}
                     onClick={() => router.push(link.href)}
                 />
