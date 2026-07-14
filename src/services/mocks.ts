@@ -208,6 +208,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 15,
                 name: "Overcooked! 2",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t15/i1.webp",
                 lowest_price: 29.90,
                 highest_price: 89.90,
@@ -215,6 +216,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 16,
                 name: "Rivals of Aether",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t16/i1.webp",
                 lowest_price: 99.90,
                 highest_price: 129.90,
@@ -222,6 +224,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 5,
                 name: "The Crew Motorfest",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t5/i1.webp",
                 lowest_price: 109.90,
                 highest_price: 140.90,
@@ -229,6 +232,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 13,
                 name: "Ori and the will of the wisps",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t13/i1.webp",
                 lowest_price: 75.00,
                 highest_price: 75.00,
@@ -236,6 +240,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 14,
                 name: "Star Wars Jedi: Fallen Order",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t14/i1.webp",
                 lowest_price: 249.90,
                 highest_price: 299.90,
@@ -243,6 +248,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 17,
                 name: "Slackers: Carts of Glory",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t17/i1.webp",
                 lowest_price: 89.90,
                 highest_price: 89.90,
@@ -250,6 +256,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 18,
                 name: "Cuphead",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t18/i1.webp",
                 lowest_price: 95.00,
                 highest_price: 95.00,
@@ -257,6 +264,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 6,
                 name: "The Texas Chain Saw Massacre",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t6/i1.webp",
                 lowest_price: 109.90,
                 highest_price: 109.90,
@@ -270,6 +278,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 19,
                 name: "SpeedRunners",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t19/i1.webp",
                 lowest_price: 199.90,
                 highest_price: 249.90,
@@ -277,6 +286,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 20,
                 name: "Duck Game",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t20/i1.webp",
                 lowest_price: 179.90,
                 highest_price: 229.90,
@@ -284,6 +294,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 21,
                 name: "Tomb Raider",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t21/i1.webp",
                 lowest_price: 89.90,
                 highest_price: 119.90,
@@ -291,6 +302,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 22,
                 name: "Rounds",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t22/i1.webp",
                 lowest_price: 79.90,
                 highest_price: 99.90,
@@ -298,6 +310,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 23,
                 name: "Hollow Knight: Silksong",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t23/i1.webp",
                 lowest_price: 75.00,
                 highest_price: 75.00,
@@ -305,6 +318,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 24,
                 name: "Hytale",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t24/i1.webp",
                 lowest_price: 249.90,
                 highest_price: 299.90,
@@ -312,6 +326,7 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 1,
                 name: "Dead by Daylight",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t1/i1.webp",
                 lowest_price: 49.90,
                 highest_price: 49.90,
@@ -319,72 +334,11 @@ export const mockHighlights: ProductHighlights[] = [
             {
                 id: 2,
                 name: "Assassin's Creed Odyssey",
+                description: "Resident Evil Requiem is the ninth entry in the Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.",
                 image: "/test/t2/i1.webp",
                 lowest_price: 109.90,
                 highest_price: 140.90,
             },
         ],
     },
-    // {
-    //     id: 2,
-    //     name: "Promoções",
-    //     products: [
-    //         {
-    //             id: 7,
-    //             name: "Grand Theft Auto V",
-    //             image: "/test/t7/i1.webp",
-    //             lowest_price: 89.90,
-    //             highest_price: 89.90,
-    //         },
-    //         {
-    //             id: 8,
-    //             name: "Dark Souls III",
-    //             image: "/test/t8/i1.webp",
-    //             lowest_price: 95.00,
-    //             highest_price: 95.00,
-    //         },
-    //         {
-    //             id: 9,
-    //             name: "Elden Ring",
-    //             image: "/test/t9/i1.webp",
-    //             lowest_price: 199.90,
-    //             highest_price: 249.90,
-    //         },
-    //         {
-    //             id: 10,
-    //             name: "EA Sports FC 25",
-    //             image: "/test/t10/i1.webp",
-    //             lowest_price: 179.90,
-    //             highest_price: 229.90,
-    //         },
-    //         {
-    //             id: 11,
-    //             name: "Red Dead Redemption 2",
-    //             image: "/test/t11/i1.webp",
-    //             lowest_price: 89.90,
-    //             highest_price: 119.90,
-    //         },
-    //         {
-    //             id: 12,
-    //             name: "Doom",
-    //             image: "/test/t12/i1.webp",
-    //             lowest_price: 79.90,
-    //             highest_price: 99.90,
-    //         },
-    //         {
-    //             id: 5,
-    //             name: "The Crew Motorfest",
-    //             image: "/test/t5/i1.webp",
-    //             lowest_price: 109.90,
-    //             highest_price: 140.90,
-    //         },
-    //         {
-    //             id: 6,
-    //             name: "The Texas Chain Saw Massacre",
-    //             image: "/test/t6/i1.webp",
-    //             lowest_price: 109.90,
-    //             highest_price: 109.90,
-    //         },
-    //     ],
-    // },
 ];

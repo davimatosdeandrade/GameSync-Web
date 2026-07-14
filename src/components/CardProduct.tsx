@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
 import { Product } from "../types/product";
 import Image from "next/image";
 
@@ -7,6 +9,19 @@ interface CardProductProps {
 }
 
 export default function CardProduct({ product, aspect }: CardProductProps) {
+    const ref = useRef<HTMLDivElement>(null);
+    const [visivel, setVisivel] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => setVisivel(entry.isIntersecting),
+            { threshold: 1 } 
+        );
+
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+    }, []);
+
     const cardProductAspect = {
         916: "aspect-[9/16]",
         169: "aspect-[16/9]",
@@ -24,15 +39,17 @@ export default function CardProduct({ product, aspect }: CardProductProps) {
                 className="bg-button rounded-[20px] transition group-hover:scale-105"
             />
             <div className="absolute w-full h-full bg-black/10 rounded-[20px]">
-                <div className="absolute bottom-0 flex flex-col justify-end w-full h-[50%] bg-linear-to-t from-black to-black/0 p-[10px]">
+                <div ref={ref} className={`absolute bottom-0 flex flex-col justify-end w-full h-[50%] bg-linear-to-t from-black to-black/0 p-[20px] transition-opacity duration-300 ${visivel ? "opacity-100" : "opacity-0"}`}>
+                    {product.description != null &&
+                    <div className={`absolute bottom-[60px] left-[-360px] group-hover:left-[20px] transition-all duration-300 w-[340px] aspect-[16/9] my-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main bg-black/40 backdrop-blur-md p-[12px]`}>
+                        <h4>{product.description}</h4>
+                    </div>}
                     <h2>{product.name}</h2>
-                    <div className="flex">
-                        {product.lowest_price === product.highest_price ? (
-                            <h3>Entre R${product.lowest_price} e R${product.highest_price}</h3>
-                        ) : (
-                            <h3>R${product.highest_price}</h3>
-                        )}
-                    </div>
+                    {product.lowest_price === product.highest_price ? (
+                        <h3>Entre R${product.lowest_price} e R${product.highest_price}</h3>
+                    ) : (
+                        <h3>R${product.highest_price}</h3>
+                    )}
                 </div>
             </div>
         </div>

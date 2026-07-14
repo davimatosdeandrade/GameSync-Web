@@ -1,7 +1,7 @@
 interface TitleProps {
     title: string;
     buttons?: React.ReactNode;
-    sticky?: boolean;
+    sticky?: boolean; //sem uso no momento
 }
 
 export default function Title({ title, buttons, sticky = false }: TitleProps) {
@@ -10,12 +10,14 @@ export default function Title({ title, buttons, sticky = false }: TitleProps) {
             {title != null && (
                 <>
                 <div className="w-[20px] h-[37px] rounded-full bg-button"/>
-                <h1>
+                <h1 className={`[background:radial-gradient(ellipse,rgba(0,0,0,1)_0%,transparent_70%)]`}>
                     {title}
                 </h1>
                 </>
             )}
-            {buttons}       
+            <div className="absolute right-[40px] flex gap-[20px]">
+                {buttons}      
+            </div>     
         </div>
     )
 }
