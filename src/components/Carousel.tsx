@@ -10,23 +10,31 @@ import Title from "./Title";
 import CardProduct from "./CardProduct";
 import Button from "./Button";
 import { useRef } from "react";
+import Image from "next/image";
 
-interface CarouselProps {
+type CarouselProps = {
     name?: string;
-    products: Product[];
-    aspect: "916" | "169" | "219";
+    aspect: "916" | "169";
     slidesPerView: number;
     autoplay?: boolean;
-}
+} & (
+    | { type: "cards"; items: Product[] }
+    | { type: "gallery"; items: string[] }
+)
 
-export default function Carousel({ name, products, aspect, slidesPerView, autoplay = false}: CarouselProps) {
+export default function Carousel({ name, items, type, aspect, slidesPerView, autoplay = false}: CarouselProps) {
     const swiperRef = useRef<SwiperType | null>(null);
+
+    const carouselImageAspect = {
+        916: "aspect-[9/16]",
+        169: "aspect-[16/9]",
+    }
 
     return(
         <div className="relative w-full">
             {name != null && 
                 <Title
-                    title={name}
+                    name={name}
                     buttons={
                         <>
                         <Button 
@@ -54,13 +62,25 @@ export default function Carousel({ name, products, aspect, slidesPerView, autopl
                 modules={[...(autoplay ? [Autoplay] : []), Pagination]}
                 className={`w-full ${name == null && "mt-[20px]"}`}
             >
-                {products.map((product) => (
-                    <SwiperSlide>
+                {type === "cards" && (items as Product[]).map((item) => (
+                    <SwiperSlide key={item.id}>
                         <CardProduct 
-                            key={product.id}
-                            product={product}
-                            aspect={aspect}
+                            product={item} 
+                            aspect={aspect} 
                         />
+                    </SwiperSlide>
+                ))}
+
+                {type === "gallery" && (items as string[]).map((item, index) => (
+                    <SwiperSlide key={index}>
+                        <div className={`relative w-full ${carouselImageAspect[aspect]}`}>
+                            <Image
+                                src={item}
+                                alt={`imagem-${index}`}
+                                fill
+                                className="object-cover rounded-[20px]"
+                            />
+                        </div>
                     </SwiperSlide>
                 ))}
             </Swiper>

@@ -1,17 +1,16 @@
 interface TitleProps {
-    title: string;
+    name: string;
     buttons?: React.ReactNode;
-    sticky?: boolean; //sem uso no momento
 }
 
-export default function Title({ title, buttons, sticky = false }: TitleProps) {
+export default function Title({ name, buttons }: TitleProps) {
     return(
-        <div className={`${sticky && "sticky top-0 z-3"} flex items-center w-full h-[77px] gap-[20px] px-[40px]`}>
-            {title != null && (
+        <div className={`flex items-center w-full h-[77px] gap-[20px] px-[40px]`}>
+            {name != null && (
                 <>
-                <div className="w-[20px] h-[37px] rounded-full bg-button"/>
+                <div className="w-[20px] h-[37px] rounded-full bg-main"/>
                 <h1 className={`[background:radial-gradient(ellipse,rgba(0,0,0,1)_0%,transparent_70%)]`}>
-                    {title}
+                    {name}
                 </h1>
                 </>
             )}
