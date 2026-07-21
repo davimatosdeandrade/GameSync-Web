@@ -18,7 +18,7 @@ export default function Button({ icon, text, active, onClick, options, cn }: But
             <div className={`absolute z-2 ${text != null ? "w-full" : "w-[37px]"}`}>
                 <button
                     onClick={options != null ? () => setShowOptions(!showOptions) : onClick}
-                    className={`flex ${cn} ${text != null ? "w-full justify-between" : "w-[37px] justify-center"} items-center bg-bg2 h-[37px] px-[10px] text-[14px] font-[400] rounded-[20px] transition duration-300 shadow-[0_0_0_2px] shadow-button hover:shadow-icon text-text2 hover:text-icon hover:cursor-pointer ${showOptions && "shadow-icon rounded-b-[0px]"} ${active && "shadow-icon"}`}>
+                    className={`flex ${cn} ${text != null ? "w-full justify-between" : "w-[37px] justify-center"} items-center bg-button h-[37px] px-[10px] text-[14px] font-[400] rounded-[20px] transition duration-300 shadow-[0_0_0_2px] shadow-button hover:shadow-icon text-text2 hover:text-icon hover:cursor-pointer ${showOptions && "shadow-icon rounded-b-[0px]"} ${active && "shadow-icon"}`}>
                     {text != null && (
                         <> {text} </>
                     )}

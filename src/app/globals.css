@@ -2,15 +2,13 @@
 
 @theme {
     --color-bg1: #0b0b0b;
-    --color-bg2: #171717;
-
     --color-main: #171717;
+    --color-main2: #121212;
     --color-button: #242323;
     --color-icon: #b7b7b7;
-
-    --color-title: #ffffff;
-    --color-text1: #c8c8c8;
-    --color-text2: #7a7a7a;
+    --color-title: #DDDDDD;
+    --color-text1: #B7B7B7;
+    --color-text2: #777777;
     --color-placeholder: #4a4a4a;
 }
 
@@ -18,21 +16,42 @@
     h1 {
         @apply text-title text-[20px] font-[600];
     }
-
     h2 {
         @apply text-text1 text-[14px] font-[400];
     }
-
     h3 {
         @apply text-text1 text-[14px] font-[500];
     }
-
     h4 {
         @apply text-text2 text-[14px] font-[400];
     }
 }
 
-html {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-button) transparent;
+body .os-scrollbar {
+    opacity: 0 !important;
+    transition: opacity 0.3s !important;
+}
+
+body .os-scrollbar:hover {
+    opacity: 1 !important;
+}
+
+.os-scrollbar-track {
+    background: transparent !important;
+}
+
+.os-scrollbar-handle {
+    background: var(--color-button) !important;
+}
+
+.os-scrollbar-handle:hover {
+    background: var(--color-icon) !important;
+}
+
+.os-scrollbar.os-scrollbar-vertical {
+    width: 12px !important;
+    top: 20px !important;
+    bottom: 20px !important;
+    right: -2px !important;
+    height: calc(100% - 40px) !important;
 }

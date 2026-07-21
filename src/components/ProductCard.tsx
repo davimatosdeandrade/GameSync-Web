@@ -9,7 +9,7 @@ interface CardProductProps {
     aspect: "916" | "169";
 }
 
-export default function CardProduct({ product, aspect }: CardProductProps) {
+export default function ProductCard({ product, aspect }: CardProductProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [visivel, setVisivel] = useState(false);
 
@@ -40,13 +40,16 @@ export default function CardProduct({ product, aspect }: CardProductProps) {
                     className="bg-button rounded-[20px] duration-300 transition group-hover:scale-102"
                 />
                 <div className="absolute w-full h-full bg-black/10 rounded-[20px]">
-                    <div ref={ref} className={`absolute bottom-0 flex flex-col justify-end w-full h-[1%] bg-linear-to-t from-black to-black/0 p-[20px] duration-300 transition-opacity duration-300 ${visivel ? "opacity-100" : "opacity-0"}`}>
-                        {product.description != null && aspect === "169" &&
-                        <div className={`absolute bottom-[60px] left-[-360px] group-hover:left-[20px] duration-300 transition-all duration-300 w-[340px] aspect-[16/9] my-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main bg-black/40 backdrop-blur-md p-[12px]`}>
-                            <h4>{product.description}</h4>
-                        </div>}
+                    <div ref={ref} className={`absolute bottom-0 flex flex-col justify-end w-full bg-linear-to-t from-black to-black/0 px-[20px] pb-[20px] duration-300 transition-opacity duration-300 ${visivel ? "opacity-100" : "opacity-0"}`}>
+                        <div className="flex gap-[12px] w-full mb-[6px] flex-wrap-reverse">
+                            {["PC", "Xbox", "Playstation", "Nintendo", "Mobile"].map((item) => (
+                                <div key={item} className="flex items-center px-[12px] rounded-[20px] shadow-[0_0_0_2px] shadow-main bg-black/40 backdrop-blur-md">
+                                    <h4>{item}</h4>
+                                </div>
+                            ))}
+                        </div>
                         <h2>{product.name}</h2>
-                        {product.lowest_price === product.highest_price ? (
+                        {product.lowest_price !== product.highest_price ? (
                             <h3>Entre R${product.lowest_price} e R${product.highest_price}</h3>
                         ) : (
                             <h3>R${product.highest_price}</h3>

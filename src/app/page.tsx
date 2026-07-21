@@ -1,4 +1,4 @@
-import Carousel from "../components/Carousel";
+import ProductCarousel from "../components/ProductCarousel";
 import { mockHighlights } from "@/src/services/mocks";
 
 export default function HomePage() {
@@ -6,13 +6,11 @@ export default function HomePage() {
         <>
         <div className="flex flex-wrap">
             {mockHighlights.map((highlight) => (
-                <Carousel
-                    key={highlight.id}
+                <ProductCarousel
                     name={highlight.name}
-                    items={highlight.products}
-                    type="cards"
                     aspect="169"
                     slidesPerView={2.333}
+                    products={highlight.products}
                 />
             ))}
         </div>
