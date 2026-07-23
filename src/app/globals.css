@@ -27,17 +27,12 @@
     }
 }
 
-body .os-scrollbar {
-    opacity: 0 !important;
-    transition: opacity 0.3s !important;
-}
-
-body .os-scrollbar:hover {
-    opacity: 1 !important;
-}
-
 .os-scrollbar-track {
-    background: transparent !important;
+    opacity: 0 !important;
+}
+
+.os-scrollbar-track:hover {
+    opacity: 1 !important;
 }
 
 .os-scrollbar-handle {
@@ -49,7 +44,7 @@ body .os-scrollbar:hover {
 }
 
 .os-scrollbar.os-scrollbar-vertical {
-    width: 12px !important;
+    width: 14px !important;
     top: 20px !important;
     bottom: 20px !important;
     right: -2px !important;

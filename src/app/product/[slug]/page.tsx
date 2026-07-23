@@ -71,7 +71,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             name="Detalhes"
         />
         <div className="grid grid-cols-7 gap-[20px] w-full px-[40px]">
-            <div className="bg-main rounded-[20px]">
+            <div className="col-span-1 bg-main rounded-[20px]">
 
             </div>
             <div className="col-span-3 aspect-[16/9] bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
@@ -93,8 +93,6 @@ export default function ProductPage({ params }: ProductPageProps) {
         </div>
         <ProductCarousel
             name="Novidades"
-            aspect="169"
-            slidesPerView={2.333}
             products={teste2}
         />
         </>

@@ -7,9 +7,8 @@ export default function HomePage() {
         <div className="flex flex-wrap">
             {mockHighlights.map((highlight) => (
                 <ProductCarousel
+                    key={highlight.id}
                     name={highlight.name}
-                    aspect="169"
-                    slidesPerView={2.333}
                     products={highlight.products}
                 />
             ))}

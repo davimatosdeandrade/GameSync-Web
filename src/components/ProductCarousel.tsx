@@ -2,59 +2,77 @@
 import { Product } from "../types/product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
-import 'swiper/css';
-import 'swiper/css/pagination'
+import "swiper/css";
+import "swiper/css/pagination"
 import { Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Title from "./Title";
 import ProductCard from "./ProductCard";
-import Button from "./Button";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 type ProductCarouselProps = {
     name: string;
-    aspect: "916" | "169";
-    slidesPerView: number;
     products: Product[];
 } 
 
-export default function ProductCarousel({ name, aspect, slidesPerView, products}: ProductCarouselProps) {
+export default function ProductCarousel({ name, products}: ProductCarouselProps) {
     const swiperRef = useRef<SwiperType | null>(null);
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
+
+    const handleSlideChange = (swiper: SwiperType) => {
+        setIsBeginning(swiper.isBeginning);
+        setIsEnd(swiper.isEnd);
+    };
 
     return(
-        <div className="relative w-full">
-            <Title
-                name={name}
-                buttons={
-                    <>
-                    <Button 
-                        icon={<ChevronLeft size={14} />}
-                        onClick={() => swiperRef.current?.slidePrev()}
+        <>
+        <Title
+            name={name}
+        />
+        <Swiper
+            onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+                setIsBeginning(swiper.isBeginning);
+                setIsEnd(swiper.isEnd);
+            }}
+            onSlideChange={handleSlideChange}
+            slidesPerView={2.333}
+            spaceBetween={20}
+            slidesOffsetBefore={40}
+            slidesOffsetAfter={40}           
+            modules={[Pagination]}
+            className="relative w-full"
+        >
+            {products.map((product)=> (
+                <SwiperSlide key={product.id} className="aspect-[16/9] bg-button overflow-hidden rounded-[20px]">
+                    <ProductCard 
+                        product={product} 
+                        aspect={"169"} 
                     />
-                    <Button 
-                        icon={<ChevronRight size={14} />}
-                        onClick={() => swiperRef.current?.slideNext()}
-                    />
-                    </>
-                }
-            />
-            <Swiper
-                onSwiper={(swiper) => (swiperRef.current = swiper)}
-                slidesPerView={slidesPerView}
-                spaceBetween={20}
-                slidesOffsetBefore={40}
-                slidesOffsetAfter={40}           
-                modules={[Pagination]}
+                </SwiperSlide>
+            ))}
+            <button
+                type="button"
+                onClick={() => swiperRef.current?.slidePrev()}
+                disabled={isBeginning}
+                className="absolute top-1/2 -translate-y-1/2 left-[60px] z-10 text-text2 transition-all duration-300 
+                disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-text2 
+                enabled:hover:text-icon enabled:cursor-pointer"
             >
-                {products.map((product)=> (
-                    <SwiperSlide key={product.id}>
-                        <ProductCard 
-                            product={product} 
-                            aspect={aspect} 
-                        />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-        </div>
+                <ChevronLeft size={22} />
+            </button>
+            <button
+                type="button"
+                onClick={() => swiperRef.current?.slideNext()}
+                disabled={isEnd}
+                className="absolute top-1/2 -translate-y-1/2 right-[60px] z-10 text-text2 transition-all duration-300 
+                disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-text2 
+                enabled:hover:text-icon enabled:cursor-pointer"
+            >
+                <ChevronRight size={22} />
+            </button>
+        </Swiper>
+        </>
     )
 }
