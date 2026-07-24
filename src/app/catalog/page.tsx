@@ -10,9 +10,7 @@ export default function CatalogPage() {
         <Title
             name={7000 + " resultados"}
             buttons={
-                <Button 
-                    icon={<Funnel size={14}/>}
-                />
+                <Button icon={<Funnel size={14}/>} />
             }
         />
         <div className="grid grid-cols-7 gap-[20px] w-full px-[40px]">

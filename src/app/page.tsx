@@ -4,7 +4,7 @@ import { mockHighlights } from "@/src/services/mocks";
 export default function HomePage() {
     return (
         <>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap w-full">
             {mockHighlights.map((highlight) => (
                 <ProductCarousel
                     key={highlight.id}

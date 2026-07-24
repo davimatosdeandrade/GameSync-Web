@@ -19,4 +19,4 @@ export default function Title({ name, buttons }: TitleProps) {
             </div>     
         </div>
     )
-}
+}   

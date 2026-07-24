@@ -27,9 +27,7 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
 
     return(
         <>
-        <Title
-            name={name}
-        />
+        <Title name={name} />
         <Swiper
             onSwiper={(swiper) => {
                 swiperRef.current = swiper;
@@ -46,10 +44,7 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
         >
             {products.map((product)=> (
                 <SwiperSlide key={product.id} className="aspect-[16/9] bg-button overflow-hidden rounded-[20px]">
-                    <ProductCard 
-                        product={product} 
-                        aspect={"169"} 
-                    />
+                    <ProductCard product={product} aspect={"169"} />
                 </SwiperSlide>
             ))}
             <button

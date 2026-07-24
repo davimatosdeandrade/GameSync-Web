@@ -7,22 +7,20 @@ import { Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import Background from "./Background";
 
 interface ImageCarouselProps {
-  images: string[];
+    images: string[];
 }
 
 export default function ImageCarousel({ images }: ImageCarouselProps) {
-  const swiperRef = useRef<SwiperType | null>(null);
-  const [isBeginning, setIsBeginning] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
-  const [zoom, setZoom] = useState(false)
+    const swiperRef = useRef<SwiperType | null>(null);
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
 
-  const handleSlideChange = (swiper: SwiperType) => {
-    setIsBeginning(swiper.isBeginning);
-    setIsEnd(swiper.isEnd);
-  };
+    const handleSlideChange = (swiper: SwiperType) => {
+        setIsBeginning(swiper.isBeginning);
+        setIsEnd(swiper.isEnd);
+    };
 
     return (
         <>
@@ -37,14 +35,8 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
             className="relative bg-button rounded-[20px]"
         >
             {images.map((image, index) => (
-                <SwiperSlide onClick={() => setZoom(true)} key={`${image}-${index}`} className="relative aspect-[16/9] overflow-hidden hover:cursor-pointer">
-                    <Image
-                        src={image}
-                        alt={`Slide ${index + 1}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover"
-                    />
+                <SwiperSlide key={`${image}-${index}`} className="relative aspect-[16/9] overflow-hidden">
+                    <Image src={image} alt={`Slide ${index + 1}`} fill sizes="aspect-[16/9]" className="object-cover" />
                 </SwiperSlide>
             ))}
             <button
@@ -68,15 +60,6 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 <ChevronRight size={22} />
             </button>
         </Swiper>
-        <Background
-            show={zoom}
-            z={10}
-            elements={
-                <>
-                    
-                </>
-            }
-        />
         </>
     );
     }

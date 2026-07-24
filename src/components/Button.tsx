@@ -1,14 +1,16 @@
 "use client"
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-interface ButtonProps {
-    icon: React.ReactNode;
+type ButtonProps = {
     text?: string;
     active?: boolean;
-    options?: string[];
     onClick?: () => void;
     cn?: string;
-}
+} & (
+    | { options: string[]; icon?: never }
+    | { options?: never; icon: React.ReactNode }
+)
 
 export default function Button({ icon, text, active, onClick, options, cn }: ButtonProps) {
     const [showOptions, setShowOptions] = useState(false);
@@ -24,12 +26,14 @@ export default function Button({ icon, text, active, onClick, options, cn }: But
                         <> {text} </>
                     )}
                     {icon}
+                    {options != null &&
+                    <ChevronDown size={14} />}
                 </button>
                 {(options != null && showOptions) &&
                 <div className="w-full shadow-[0_0_0_2px] bg-button shadow-icon rounded-b-[20px]">
                     {options.map((option) => (
-                        <div onClick={onClick} className="flex items-center w-full h-[37px] px-[10px]">
-                            {option}
+                        <div key={option} onClick={onClick} className="flex items-center w-full h-[37px] px-[10px]">
+                            <h4>{option}</h4>
                         </div>
                     ))}
                 </div>}
