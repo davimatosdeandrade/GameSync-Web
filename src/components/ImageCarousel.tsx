@@ -7,15 +7,19 @@ import { Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef } from "react";
 import Image from "next/image";
+import Background from "./Background";
+import Title from "./Title";
 
 interface ImageCarouselProps {
+    name: string;
     images: string[];
 }
 
-export default function ImageCarousel({ images }: ImageCarouselProps) {
+export default function ImageCarousel({ name, images }: ImageCarouselProps) {
     const swiperRef = useRef<SwiperType | null>(null);
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
+    const [zoom, setZoom] = useState(false);
 
     const handleSlideChange = (swiper: SwiperType) => {
         setIsBeginning(swiper.isBeginning);
@@ -31,12 +35,15 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 setIsEnd(swiper.isEnd);
             }}
             onSlideChange={handleSlideChange}
+            pagination={{
+                clickable: true,
+            }}
             modules={[Pagination]}
-            className="relative bg-button rounded-[20px]"
+            className="group w-full h-full relative bg-button rounded-[20px] duration-300 transition border-2 border-transparent hover:border-icon"
         >
             {images.map((image, index) => (
-                <SwiperSlide key={`${image}-${index}`} className="relative aspect-[16/9] overflow-hidden">
-                    <Image src={image} alt={`Slide ${index + 1}`} fill sizes="aspect-[16/9]" className="object-cover" />
+                <SwiperSlide key={`${image}-${index}`} className="relative overflow-hidden hover:cursor-pointer">
+                    <Image onClick={()=> setZoom(true)} src={image} alt={`Slide ${index + 1}`} fill sizes="aspect-[16/9]" className="object-cover duration-300 transition group-hover:scale-102" />
                 </SwiperSlide>
             ))}
             <button
@@ -60,6 +67,30 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 <ChevronRight size={22} />
             </button>
         </Swiper>
+        <Background
+            show={zoom} 
+            z={10} 
+            // elements={
+            //     <>
+            //     <Title name={name} />
+            //     <Swiper
+            //         slidesPerView={'auto'}
+            //         spaceBetween={20}
+            //         pagination={{
+            //             clickable: true,
+            //         }}
+            //         modules={[Pagination]}
+            //         className="bg-red-900 w-full flex-1 px-[20px]"
+            //     >
+            //         {images.map((image, index) => (
+            //             <SwiperSlide key={`${image}-${index}`} className="relative rounded-[20px] overflow-hidden duration-300 transition-all border-2 border-transparent hover:border-icon hover:cursor-pointer">
+            //                 {/* <Image onClick={()=> setZoom(true)} src={image} alt={`Slide ${index + 1}`} fill sizes="aspect-[16/9]" className="object-cover" /> */}
+            //             </SwiperSlide>
+            //         ))}
+            //     </Swiper>
+            //     </>
+            // }
+        />
         </>
     );
     }

@@ -37,13 +37,13 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
             onSlideChange={handleSlideChange}
             slidesPerView={2.333}
             spaceBetween={20}
-            slidesOffsetBefore={40}
-            slidesOffsetAfter={40}           
+            slidesOffsetBefore={37}
+            slidesOffsetAfter={37}           
             modules={[Pagination]}
             className="relative w-full"
         >
             {products.map((product)=> (
-                <SwiperSlide key={product.id} className="aspect-[16/9] bg-button overflow-hidden rounded-[20px]">
+                <SwiperSlide key={product.id} className="bg-button overflow-hidden rounded-[20px]">
                     <ProductCard product={product} aspect={"169"} />
                 </SwiperSlide>
             ))}

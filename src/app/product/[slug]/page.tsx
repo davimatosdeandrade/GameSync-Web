@@ -4,7 +4,7 @@ import Image from "next/image";
 import ScrollDiv from "@/src/components/ScrollDiv";
 import ImageCarousel from "@/src/components/ImageCarousel";
 import Button from "@/src/components/Button";
-import { ShoppingCart } from "lucide-react";    
+import { ShoppingCart, Monitor, Captions, AudioLines } from "lucide-react";    
 
 interface ProductPageProps {
     params: { slug: string }
@@ -54,8 +54,8 @@ export default function ProductPage({ params }: ProductPageProps) {
     return(
         <>
         <Title name={name} />
-        <div className="w-full px-[40px]">
-            <div className="relative w-full aspect-[21/5] bg-main rounded-[20px] overflow-hidden">
+        <div className="w-full px-[37px]">
+            <div className="relative w-full hSizeCard bg-main rounded-[20px] overflow-hidden">
                 <Image src={image} alt={name} fill className="object-cover" />  
                 <div className="absolute flex flex-col justify-end w-full h-full bg-black/10 rounded-[20px]">
                     <div className="relative ml-[20px] mb-[14px] w-[calc((100%-120px)/7)] aspect-[16/9]">
@@ -71,20 +71,29 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </div>
             </div>
         </div>
-        <div className="grid grid-cols-7 w-full py-[20px] px-[40px] gap-[20px]">
+        <div className="grid grid-cols-7 w-full py-[20px] px-[37px] gap-[20px]">
             <Button text="Plataforma" options={["PC", "Xbox", "Playstation", "Nintendo", "Mobile"]} />
             <div className="col-span-6">
                 <Button icon={ <ShoppingCart size={14} /> } text={`Comprar`} />
             </div>
         </div>
-        <div className="grid grid-cols-7 gap-[20px] w-full px-[40px]">
-            <div className="col-span-1 bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
-                <h1>Requisitos</h1>
-                {/* <ScrollDiv className="flex-1 bg-main2 rounded-[20px] p-[14px] overflow-auto">
-                    <h4></h4>
-                </ScrollDiv> */}
+        <div className="grid grid-cols-7 flex gap-[20px] w-full px-[37px]">
+            <div className="col-span-1 hSizeCard bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
+                <h1>Categorias</h1>
+                <ScrollDiv>
+                    {["Alemão", "Inglês", "Espanhol (América Latina)", "Espanhol (Espanha)", "Francês", "Português (Brasil)", "Coreano"].map((item) => (
+                        <div className="flex justify-between w-full">
+                            <h4>{item}</h4>
+                            <div className="flex items-center text-text2 gap-[6px]">
+                                <AudioLines size={14} />
+                                <Monitor size={14} />
+                                <Captions size={14} />
+                            </div>
+                        </div>
+                    ))}
+                </ScrollDiv>
             </div>
-            <div className="col-span-3 aspect-[16/9] bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
+            <div className="col-span-3 hSizeCard bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
                 <h1>Sobre</h1>
                 <div className="grid grid-cols-3 gap-[20px] h-[37px] w-full">
                     <div className="flex items-center gap-[6px] px-[14px] bg-main2 rounded-[20px]">
@@ -100,12 +109,12 @@ export default function ProductPage({ params }: ProductPageProps) {
                         <h4>20/12/2025</h4>
                     </div>
                 </div>
-                <ScrollDiv className="flex-1 bg-main2 rounded-[20px] p-[14px] overflow-auto">
+                <ScrollDiv>
                     <h4>{description}</h4>
                 </ScrollDiv>
             </div>
-            <div className="col-span-3">
-                <ImageCarousel images={teste3} />
+            <div className="col-span-3 hSizeCard bg-button rounded-[20px]">
+                <ImageCarousel name={name} images={teste3} />
             </div> 
         </div>
         <ProductCarousel name="Novidades" products={teste2} />

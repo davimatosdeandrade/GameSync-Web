@@ -13,7 +13,7 @@ export default function CatalogPage() {
                 <Button icon={<Funnel size={14}/>} />
             }
         />
-        <div className="grid grid-cols-7 gap-[20px] w-full px-[40px]">
+        <div className="grid grid-cols-7 gap-[20px] w-full px-[37px]">
             {mockProducts.map((product) => (
                 <ProductCard 
                     key={product.id} 

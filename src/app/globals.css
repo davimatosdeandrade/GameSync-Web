@@ -27,6 +27,10 @@
     }
 }
 
+.hSizeCard {
+    height: calc(((100vw - 200px) / 7) * 1.75);
+}
+
 .os-scrollbar-track {
     opacity: 0 !important;
 }
