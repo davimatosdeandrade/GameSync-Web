@@ -4,7 +4,7 @@ import Image from "next/image";
 import ScrollDiv from "@/src/components/ScrollDiv";
 import ImageCarousel from "@/src/components/ImageCarousel";
 import Button from "@/src/components/Button";
-import { ShoppingCart, Monitor, Captions, AudioLines } from "lucide-react";    
+import { ShoppingCart, Monitor, Captions, AudioLines, Check } from "lucide-react";    
 
 interface ProductPageProps {
     params: { slug: string }
@@ -46,7 +46,7 @@ const teste2 = [
     },
 ]
 
-const teste3 = [ "/test/t24/i1.webp", "/test/t24/i2.webp", "/test/t24/i3.webp" ]
+const teste3 = [ "/test/t24/i1.webp", "/test/t24/i2.webp", "/test/t24/i3.webp", "/test/t24/i0.jpg" ]
 
 export default function ProductPage({ params }: ProductPageProps) {
     const { name, description, image } = teste;
@@ -62,32 +62,40 @@ export default function ProductPage({ params }: ProductPageProps) {
                         <Image src={"/test/t24/i4.webp"} alt="game logo" fill sizes="aspect-[16/9]" className="absolute"/>
                     </div>
                     <div className="flex gap-[14px] w-full right-0 bottom-0 bg-linear-to-t from-black to-black/0 px-[20px] pb-[20px]">
-                        {["PC", "Xbox", "Playstation", "Nintendo", "Mobile"].map((item) => (
+                        {["Sobrevivência", "Mundo Aberto", "RPG", "Maluco", "Aventura"].map((item) => (
                             <div key={item} className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main bg-main2">
                                 <h4>{item}</h4>
                             </div>
-                        ))}                 
+                        ))}                
                     </div>  
                 </div>
             </div>
         </div>
         <div className="grid grid-cols-7 w-full py-[20px] px-[37px] gap-[20px]">
-            <Button text="Plataforma" options={["PC", "Xbox", "Playstation", "Nintendo", "Mobile"]} />
+            <Button text="Plataforma" options={["PC", "Xbox", "Playstation", "Nintendo", "Mobile"]}/>
             <div className="col-span-6">
-                <Button icon={ <ShoppingCart size={14} /> } text={`Comprar`} />
+                <Button icon={ <ShoppingCart size={14} /> } text={`Comprar`}/>
             </div>
         </div>
         <div className="grid grid-cols-7 flex gap-[20px] w-full px-[37px]">
             <div className="col-span-1 hSizeCard bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
-                <h1>Categorias</h1>
+                <h1>Idiomas</h1>
                 <ScrollDiv>
+                    <div  className="flex justify-between w-full">
+                        <h3>Opções</h3>
+                        <div className="flex items-center text-icon gap-[6px]">
+                            <AudioLines size={14} />
+                            <Monitor size={14} />
+                            <Captions size={14} />
+                        </div>
+                    </div>
                     {["Alemão", "Inglês", "Espanhol (América Latina)", "Espanhol (Espanha)", "Francês", "Português (Brasil)", "Coreano"].map((item) => (
-                        <div className="flex justify-between w-full">
+                        <div key={item} className="flex justify-between w-full">
                             <h4>{item}</h4>
                             <div className="flex items-center text-text2 gap-[6px]">
-                                <AudioLines size={14} />
-                                <Monitor size={14} />
-                                <Captions size={14} />
+                                <Check size={14} />
+                                <Check size={14} />
+                                <Check size={14} />
                             </div>
                         </div>
                     ))}
@@ -117,6 +125,55 @@ export default function ProductPage({ params }: ProductPageProps) {
                 <ImageCarousel name={name} images={teste3} />
             </div> 
         </div>
+        {/* <Title name="Outros dados" />
+        <div className="grid grid-cols-7 flex gap-[20px] w-full px-[37px]">
+            <div className="col-span-1 hSizeCard bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
+                <h1>Idiomas</h1>
+                <ScrollDiv>
+                    <div  className="flex justify-between w-full">
+                        <h3>Opções</h3>
+                        <div className="flex items-center text-icon gap-[6px]">
+                            <AudioLines size={14} />
+                            <Monitor size={14} />
+                            <Captions size={14} />
+                        </div>
+                    </div>
+                    {["Alemão", "Inglês", "Espanhol (América Latina)", "Espanhol (Espanha)", "Francês", "Português (Brasil)", "Coreano"].map((item) => (
+                        <div key={item} className="flex justify-between w-full">
+                            <h4>{item}</h4>
+                            <div className="flex items-center text-text2 gap-[6px]">
+                                <Check size={14} />
+                                <Check size={14} />
+                                <Check size={14} />
+                            </div>
+                        </div>
+                    ))}
+                </ScrollDiv>
+            </div>
+            <div className="col-span-3 hSizeCard bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
+                <h1>Requisitos</h1>
+                <div className="grid grid-cols-3 gap-[20px] h-[37px] w-full">
+                    <div className="flex items-center gap-[6px] px-[14px] bg-main2 rounded-[20px]">
+                        <h3>Desenvolvido por</h3>
+                        <h4>Hypixel</h4>
+                    </div>
+                    <div className="flex items-center gap-[6px] px-[14px] bg-main2 rounded-[20px]">
+                        <h3>Distribuído por</h3>
+                        <h4>Hypixel</h4>
+                    </div>
+                    <div className="flex items-center gap-[6px] px-[14px] bg-main2 rounded-[20px]">
+                        <h3>Lançado em</h3>
+                        <h4>20/12/2025</h4>
+                    </div>
+                </div>
+                <ScrollDiv>
+                    <h4>{description}</h4>
+                </ScrollDiv>
+            </div>
+            <div className="col-span-3 hSizeCard bg-button rounded-[20px]">
+                
+            </div> 
+        </div> */}
         <ProductCarousel name="Novidades" products={teste2} />
         </>
     )

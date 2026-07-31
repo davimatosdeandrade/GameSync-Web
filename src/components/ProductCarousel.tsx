@@ -9,6 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Title from "./Title";
 import ProductCard from "./ProductCard";
 import { useRef, useState } from "react";
+import Button from "./Button";
 
 type ProductCarouselProps = {
     name: string;
@@ -40,33 +41,19 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
             slidesOffsetBefore={37}
             slidesOffsetAfter={37}           
             modules={[Pagination]}
-            className="relative w-full"
+            className="relative w-full z-5"
         >
             {products.map((product)=> (
                 <SwiperSlide key={product.id} className="bg-button overflow-hidden rounded-[20px]">
                     <ProductCard product={product} aspect={"169"} />
                 </SwiperSlide>
             ))}
-            <button
-                type="button"
-                onClick={() => swiperRef.current?.slidePrev()}
-                disabled={isBeginning}
-                className="absolute top-1/2 -translate-y-1/2 left-[60px] z-10 text-text2 transition-all duration-300 
-                disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-text2 
-                enabled:hover:text-icon enabled:cursor-pointer"
-            >
-                <ChevronLeft size={22} />
-            </button>
-            <button
-                type="button"
-                onClick={() => swiperRef.current?.slideNext()}
-                disabled={isEnd}
-                className="absolute top-1/2 -translate-y-1/2 right-[60px] z-10 text-text2 transition-all duration-300 
-                disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-text2 
-                enabled:hover:text-icon enabled:cursor-pointer"
-            >
-                <ChevronRight size={22} />
-            </button>
+            <Button icon={<ChevronLeft size={14} />} disabled={isBeginning} onClick={() => swiperRef.current?.slidePrev()} 
+                position="absolute top-1/2 -translate-y-1/2 left-[60px] z-1" cn="bg-button/50 shadow-button/50"
+            />
+            <Button icon={<ChevronRight size={14} />} disabled={isEnd} onClick={() => swiperRef.current?.slideNext()} 
+                position="absolute top-1/2 -translate-y-1/2 right-[60px] z-1" cn="bg-button/50 shadow-button/50"
+            />
         </Swiper>
         </>
     )

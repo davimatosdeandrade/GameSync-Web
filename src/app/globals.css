@@ -54,3 +54,13 @@
     right: -2px !important;
     height: calc(100% - 40px) !important;
 }
+
+.swiper-pagination-bullet {
+    background: var(--color-button) !important;
+    opacity: 0.5 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--color-icon) !important;
+    opacity: 1 !important;
+}

@@ -4,11 +4,12 @@ import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Background from "./Background";
 import Title from "./Title";
+import Button from "./Button";
 
 interface ImageCarouselProps {
     name: string;
@@ -44,52 +45,58 @@ export default function ImageCarousel({ name, images }: ImageCarouselProps) {
             {images.map((image, index) => (
                 <SwiperSlide key={`${image}-${index}`} className="relative overflow-hidden hover:cursor-pointer">
                     <Image onClick={()=> setZoom(true)} src={image} alt={`Slide ${index + 1}`} fill sizes="aspect-[16/9]" className="object-cover duration-300 transition group-hover:scale-102" />
+                    <div />
                 </SwiperSlide>
             ))}
-            <button
-                type="button"
-                onClick={() => swiperRef.current?.slidePrev()}
-                disabled={isBeginning}
-                className="absolute top-1/2 -translate-y-1/2 left-[20px] z-1 text-text2 transition-all duration-300 
-                disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-text2 
-                enabled:hover:text-icon enabled:cursor-pointer"
-            >
-                <ChevronLeft size={22} />
-            </button>
-            <button
-                type="button"
-                onClick={() => swiperRef.current?.slideNext()}
-                disabled={isEnd}
-                className="absolute top-1/2 -translate-y-1/2 right-[20px] z-1 text-text2 transition-all duration-300 
-                disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-text2 
-                enabled:hover:text-icon enabled:cursor-pointer"
-            >
-                <ChevronRight size={22} />
-            </button>
+            <Button icon={<ChevronLeft size={14} />} disabled={isBeginning} onClick={() => swiperRef.current?.slidePrev()} 
+                position="absolute top-1/2 -translate-y-1/2 left-[20px] z-1" cn="bg-button/50 shadow-button/50"
+            />
+            <Button icon={<ChevronRight size={14} />} disabled={isEnd} onClick={() => swiperRef.current?.slideNext()} 
+                position="absolute top-1/2 -translate-y-1/2 right-[20px] z-1" cn="bg-button/50 shadow-button/50"
+            />
         </Swiper>
         <Background
             show={zoom} 
             z={10} 
-            // elements={
-            //     <>
-            //     <Title name={name} />
-            //     <Swiper
-            //         slidesPerView={'auto'}
-            //         spaceBetween={20}
-            //         pagination={{
-            //             clickable: true,
-            //         }}
-            //         modules={[Pagination]}
-            //         className="bg-red-900 w-full flex-1 px-[20px]"
-            //     >
-            //         {images.map((image, index) => (
-            //             <SwiperSlide key={`${image}-${index}`} className="relative rounded-[20px] overflow-hidden duration-300 transition-all border-2 border-transparent hover:border-icon hover:cursor-pointer">
-            //                 {/* <Image onClick={()=> setZoom(true)} src={image} alt={`Slide ${index + 1}`} fill sizes="aspect-[16/9]" className="object-cover" /> */}
-            //             </SwiperSlide>
-            //         ))}
-            //     </Swiper>
-            //     </>
-            // }
+            elements={
+                <>
+                <Title 
+                    name={name} 
+                    buttons={
+                        <Button icon={<X size={14} />} onClick={() => setZoom(false)} position="relative"/>
+                    }
+                />
+                <Swiper
+                    onSwiper={(swiper) => {
+                        swiperRef.current = swiper;
+                        setIsBeginning(swiper.isBeginning);
+                        setIsEnd(swiper.isEnd);
+                    }}
+                    onSlideChange={handleSlideChange}
+                    slidesPerView={1}
+                    spaceBetween={137}
+                    slidesOffsetBefore={97}
+                    slidesOffsetAfter={97}      
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    className="w-full flex-1 px-[20px]"
+                >
+                    {images.map((image, index) => (
+                        <SwiperSlide key={`${image}-${index}`} className="relative w-full flex items-center justify-center">
+                            <Image onClick={() => setZoom(true)} src={image} alt={`Slide ${index + 1}`} fill className="object-contain rounded-[20px] cursor-pointer" sizes="(max-width: 768px) 100vw, 80vw"/>
+                        </SwiperSlide>
+                    ))}
+                    <Button icon={<ChevronLeft size={14} />} disabled={isBeginning} onClick={() => swiperRef.current?.slidePrev()} 
+                        position="absolute top-1/2 -translate-y-1/2 left-[40px] z-1" cn="bg-button/50 shadow-button/50"
+                    />
+                    <Button icon={<ChevronRight size={14} />} disabled={isEnd} onClick={() => swiperRef.current?.slideNext()} 
+                        position="absolute top-1/2 -translate-y-1/2 right-[40px] z-1" cn="bg-button/50 shadow-button/50"
+                    />
+                </Swiper>
+                </>
+            }
         />
         </>
     );
