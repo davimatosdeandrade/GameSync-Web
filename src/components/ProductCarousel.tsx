@@ -41,7 +41,7 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
             slidesOffsetBefore={37}
             slidesOffsetAfter={37}           
             modules={[Pagination]}
-            className="relative w-full z-5"
+            className="relative w-full"
         >
             {products.map((product)=> (
                 <SwiperSlide key={product.id} className="bg-button overflow-hidden rounded-[20px]">

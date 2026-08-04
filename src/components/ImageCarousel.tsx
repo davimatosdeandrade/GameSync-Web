@@ -18,27 +18,18 @@ interface ImageCarouselProps {
 
 export default function ImageCarousel({ name, images }: ImageCarouselProps) {
     const swiperRef = useRef<SwiperType | null>(null);
-    const [isBeginning, setIsBeginning] = useState(true);
-    const [isEnd, setIsEnd] = useState(false);
     const [zoom, setZoom] = useState(false);
-
-    const handleSlideChange = (swiper: SwiperType) => {
-        setIsBeginning(swiper.isBeginning);
-        setIsEnd(swiper.isEnd);
-    };
 
     return (
         <>
         <Swiper
             onSwiper={(swiper) => {
                 swiperRef.current = swiper;
-                setIsBeginning(swiper.isBeginning);
-                setIsEnd(swiper.isEnd);
             }}
-            onSlideChange={handleSlideChange}
             pagination={{
                 clickable: true,
             }}
+            loop={true}
             modules={[Pagination]}
             className="group w-full h-full relative bg-button rounded-[20px] duration-300 transition border-2 border-transparent hover:border-icon"
         >
@@ -48,10 +39,10 @@ export default function ImageCarousel({ name, images }: ImageCarouselProps) {
                     <div />
                 </SwiperSlide>
             ))}
-            <Button icon={<ChevronLeft size={14} />} disabled={isBeginning} onClick={() => swiperRef.current?.slidePrev()} 
+            <Button icon={<ChevronLeft size={14} />} onClick={() => swiperRef.current?.slidePrev()} 
                 position="absolute top-1/2 -translate-y-1/2 left-[20px] z-1" cn="bg-button/50 shadow-button/50"
             />
-            <Button icon={<ChevronRight size={14} />} disabled={isEnd} onClick={() => swiperRef.current?.slideNext()} 
+            <Button icon={<ChevronRight size={14} />} onClick={() => swiperRef.current?.slideNext()} 
                 position="absolute top-1/2 -translate-y-1/2 right-[20px] z-1" cn="bg-button/50 shadow-button/50"
             />
         </Swiper>
@@ -69,14 +60,12 @@ export default function ImageCarousel({ name, images }: ImageCarouselProps) {
                 <Swiper
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;
-                        setIsBeginning(swiper.isBeginning);
-                        setIsEnd(swiper.isEnd);
                     }}
-                    onSlideChange={handleSlideChange}
                     slidesPerView={1}
                     spaceBetween={137}
                     slidesOffsetBefore={97}
                     slidesOffsetAfter={97}      
+                    loop={true}
                     pagination={{
                         clickable: true,
                     }}
@@ -88,10 +77,10 @@ export default function ImageCarousel({ name, images }: ImageCarouselProps) {
                             <Image onClick={() => setZoom(true)} src={image} alt={`Slide ${index + 1}`} fill className="object-contain rounded-[20px] cursor-pointer" sizes="(max-width: 768px) 100vw, 80vw"/>
                         </SwiperSlide>
                     ))}
-                    <Button icon={<ChevronLeft size={14} />} disabled={isBeginning} onClick={() => swiperRef.current?.slidePrev()} 
+                    <Button icon={<ChevronLeft size={14} />} onClick={() => swiperRef.current?.slidePrev()} 
                         position="absolute top-1/2 -translate-y-1/2 left-[40px] z-1" cn="bg-button/50 shadow-button/50"
                     />
-                    <Button icon={<ChevronRight size={14} />} disabled={isEnd} onClick={() => swiperRef.current?.slideNext()} 
+                    <Button icon={<ChevronRight size={14} />} onClick={() => swiperRef.current?.slideNext()} 
                         position="absolute top-1/2 -translate-y-1/2 right-[40px] z-1" cn="bg-button/50 shadow-button/50"
                     />
                 </Swiper>
