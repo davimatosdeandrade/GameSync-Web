@@ -48,7 +48,6 @@ export default function ImageCarousel({ name, images }: ImageCarouselProps) {
         </Swiper>
         <Background
             show={zoom} 
-            z={10} 
             elements={
                 <>
                 <Title 
