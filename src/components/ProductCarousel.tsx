@@ -1,5 +1,5 @@
 "use client"
-import { Product } from "../types/product";
+import { ProductSimpleDetail } from "../types/product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
@@ -13,7 +13,7 @@ import Button from "./Button";
 
 type ProductCarouselProps = {
     name: string;
-    products: Product[];
+    products: ProductSimpleDetail[];
 } 
 
 export default function ProductCarousel({ name, products}: ProductCarouselProps) {

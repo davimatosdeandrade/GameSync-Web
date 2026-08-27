@@ -1,11 +1,13 @@
 import ProductCarousel from "../components/ProductCarousel";
-import { mockHighlights } from "@/src/services/mocks";
+import { getHighlights } from "@/src/services/api";
 
-export default function HomePage() {
+export default async function HomePage() {
+    const highlights = await getHighlights();
+
     return (
         <>
         <div className="flex flex-wrap w-full">
-            {mockHighlights.map((highlight) => (
+            {highlights.map((highlight) => (
                 <ProductCarousel
                     key={highlight.id}
                     name={highlight.name}

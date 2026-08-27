@@ -1,6 +1,4 @@
-import { Product } from "./product";
-import { Highlight } from "./highlights";
-
-export interface ProductHighlights extends Highlight {
-    products: Product[];
+export interface ProductHighlightRelation {
+  id_product: number;
+  id_highlight: number;
 }
