@@ -55,22 +55,24 @@ export default function ProductCard({ product, aspect }: CardProductProps) {
                     >
                         <h2>{product?.name}</h2>
 
-                        {lowestPrice !== null && highestPrice !== null ? (
+                        {lowestPrice !== null && highestPrice !== null && (
                             lowestPrice !== highestPrice ? (
                                 <h3>Entre R${lowestPrice.toFixed(2)} e R${highestPrice.toFixed(2)}</h3>
                             ) : (
                                 <h3>R${highestPrice.toFixed(2)}</h3>
                             )
-                        ) : (
-                            <h3>Esgotado</h3>
                         )}
 
                         <div className="flex gap-[14px] w-full mt-[6px] flex-wrap-reverse">
                             {offers.map((offer) => (
-                                <div key={offer.id} className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main bg-main2">
+                                <div key={offer.id} className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main/70 bg-main2/30">
                                     <h4>{offer.store.name}</h4>
                                 </div>
                             ))}
+                            {offers.length < 1 &&
+                            <div className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-red-400/70 bg-red-400/30">
+                                <h4>Esgotado</h4>
+                            </div>}
                         </div>
                     </div>
                 </div>

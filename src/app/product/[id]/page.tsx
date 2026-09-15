@@ -24,6 +24,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
     if (!product) return notFound();
 
+    const offers = product?.offers ?? [];
+    const prices = offers.map((o) => Number(o.price));
+    const lowestPrice = prices.length > 0 ? Math.min(...prices) : null;
+    const highestPrice = prices.length > 0 ? Math.max(...prices) : null;
+
     const coverMedia = product.medias?.find((media) => {
         if (typeof media === "string") return false;
         
@@ -52,24 +57,28 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         priority
                     />  
                     <div className="absolute flex flex-col justify-end w-full h-full bg-black/10 rounded-[20px]">
-                        <div className="relative ml-[20px] mb-[14px] w-[calc((100%-120px)/7)] aspect-[16/9]">
+                        {/* <div className="relative ml-[20px] mb-[14px] w-[calc((100%-120px)/7)] aspect-[16/9]">
                             <Image src={"/test/t24/i4.webp"} alt="game logo" fill sizes="aspect-[16/9]" className="absolute"/>
-                        </div>
+                        </div> */}
+                        
                         <div className="flex gap-[14px] w-full right-0 bottom-0 bg-linear-to-t from-black to-black/0 px-[20px] pb-[20px]">
-                            {product.categories?.map((category) => (
-                                <div key={category.id} className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main bg-main2">
-                                    <h4>{category.name}</h4>
+                            {offers?.map((offer) => (
+                                <div key={offer.id} className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main/70 bg-main2/30">
+                                    <h4>{offer.store.name}</h4>
                                 </div>
-                            ))}                
+                            ))}  
+                            {offers.length < 1 &&
+                            <div className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-red-400/70 bg-red-400/30">
+                                <h4>Esgotado</h4>
+                            </div>}             
                         </div>  
                     </div>
                 </div>
             </div>
 
             <div className="grid grid-cols-7 w-full py-[20px] px-[37px] gap-[20px]">
-                <Button text="Plataforma" options={["PC", "Xbox", "Playstation", "Nintendo", "Mobile"]}/>
-                <div className="col-span-6">
-                    <Button icon={<ShoppingCart size={14} />} text="Comprar"/>
+                <div className="col-span-7">
+                    <Button icon={<ShoppingCart size={14} />} text={`${lowestPrice !== null && highestPrice !== null ? (lowestPrice !== highestPrice ? `Comprar entre R$${lowestPrice.toFixed(2)} e R$${highestPrice.toFixed(2)}` : `Comprar R$${highestPrice.toFixed(2)}`) : "Quero saber quando tiver uma oferta disponível!"}`}/>
                 </div>
             </div>
 
@@ -77,6 +86,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <div className="col-span-1 hSizeCard bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
                     <h1>Idiomas</h1>
                     <ScrollDiv>
+                        {product.languages.length > 0 ?
                         <div className="flex justify-between w-full">
                             <h3>Opções</h3>
                             <div className="flex items-center text-icon gap-[6px]">
@@ -84,14 +94,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
                                 <Monitor size={14} />
                                 <Captions size={14} />
                             </div>
-                        </div>
-                        {["Alemão", "Inglês", "Espanhol (América Latina)", "Espanhol (Espanha)", "Francês", "Português (Brasil)", "Coreano"].map((item) => (
-                            <div key={item} className="flex justify-between w-full">
-                                <h4>{item}</h4>
+                        </div> : <h4>Nenhum idioma disponível.</h4>}
+                        {product.languages.map((language) => (
+                            <div key={language.id} className="flex justify-between w-full">
+                                <h4>{language.name}</h4>
                                 <div className="flex items-center text-text2 gap-[6px]">
-                                    <Check size={14} />
-                                    <Check size={14} />
-                                    <Check size={14} />
+                                    {language.audio === true && <Check size={14} />}
+                                    {language.interface === true && <Check size={14} />}
+                                    {language.subtitles === true && <Check size={14} />}
                                 </div>
                             </div>
                         ))}
