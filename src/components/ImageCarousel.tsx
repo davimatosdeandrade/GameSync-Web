@@ -27,6 +27,7 @@ export default function ImageCarousel({ name = "", images = [] }: ImageCarouselP
     const mainSwiperRef = useRef<SwiperType | null>(null);
     const modalSwiperRef = useRef<SwiperType | null>(null);
     const [zoom, setZoom] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     // Converte os itens para extrair sempre a string da URL
     const imageUrls = images.map((img) => (typeof img === "string" ? img : img.url));
@@ -42,20 +43,32 @@ export default function ImageCarousel({ name = "", images = [] }: ImageCarouselP
                 pagination={{ clickable: true }}
                 loop={imageUrls.length > 1}
                 modules={[Pagination]}
-                className="group w-full h-full relative bg-button rounded-[20px] duration-300 transition border-2 border-transparent hover:border-icon"
-            >
-                {imageUrls.map((url, index) => (
-                    <SwiperSlide key={`main-${url}-${index}`} className="relative overflow-hidden hover:cursor-pointer">
-                        <Image
-                            onClick={() => setZoom(true)}
-                            src={url}
-                            alt={`${name} - Slide ${index + 1}`}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover duration-300 transition group-hover:scale-102"
-                        />
-                    </SwiperSlide>
-                ))}
+                className="w-full h-full relative bg-button rounded-[20px]"
+            >       
+
+
+<div 
+    onClick={() => setZoom(true)} 
+    // 2. Controlamos o estado nos eventos de mouse da própria div
+    onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}
+    className="absolute top-0 left-0 w-full h-full rounded-[20px] duration-300 transition border-2 border-transparent 
+    hover:border-icon z-1 hover:cursor-pointer"
+/>
+
+{imageUrls.map((url, index) => (
+    <SwiperSlide key={`main-${url}-${index}`} className="relative overflow-hidden">
+        <Image
+            src={url}
+            alt={`${name} - Slide ${index + 1}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+
+            className={`object-cover duration-300 transition ${isHovered ? 'scale-102' : 'scale-100'}`}
+        />
+    </SwiperSlide>
+))}
+
                 
                 {imageUrls.length > 1 && (
                     <>
@@ -98,7 +111,7 @@ export default function ImageCarousel({ name = "", images = [] }: ImageCarouselP
                         >
                             {imageUrls.map((url, index) => (
                                 <SwiperSlide key={`modal-${url}-${index}`} className="relative w-full h-full flex items-center justify-center">
-                                    <div className="relative w-full h-[70vh]">
+                                    <div className="relative w-full h-[calc(100%-38px)]">
                                         <Image
                                             src={url}
                                             alt={`${name} - Zoom ${index + 1}`}

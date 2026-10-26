@@ -10,6 +10,7 @@ import Title from "./Title";
 import ProductCard from "./ProductCard";
 import { useRef, useState } from "react";
 import Button from "./Button";
+import { ArrowRight } from "lucide-react";
 
 type ProductCarouselProps = {
     name: string;
@@ -28,7 +29,10 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
 
     return(
         <>
-        <Title name={name} />
+        <Title 
+            name={name} 
+            buttons={<Button icon={<ArrowRight size={14} />} />}
+        />
         <Swiper
             onSwiper={(swiper) => {
                 swiperRef.current = swiper;

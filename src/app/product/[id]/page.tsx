@@ -7,6 +7,7 @@ import Button from "@/src/components/Button";
 import { ShoppingCart, Monitor, Captions, AudioLines, Check } from "lucide-react";    
 import { getProductById } from "@/src/services/api";
 import { notFound } from "next/navigation";
+import { EllipsisVertical } from "lucide-react";
 
 interface ProductPageProps {
     params: Promise<{ id: string }>;
@@ -45,7 +46,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
     return (
         <>
-            <Title name={product.name} />
+            <Title 
+                name={product.name} 
+                buttons={<Button icon={<EllipsisVertical size={14} />} />}
+            />
             
             <div className="w-full px-[37px]">
                 <div className="relative w-full hSizeCard bg-main rounded-[20px] overflow-hidden">
@@ -57,10 +61,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         priority
                     />  
                     <div className="absolute flex flex-col justify-end w-full h-full bg-black/10 rounded-[20px]">
-                        {/* <div className="relative ml-[20px] mb-[14px] w-[calc((100%-120px)/7)] aspect-[16/9]">
-                            <Image src={"/test/t24/i4.webp"} alt="game logo" fill sizes="aspect-[16/9]" className="absolute"/>
-                        </div> */}
-                        
                         <div className="flex gap-[14px] w-full right-0 bottom-0 bg-linear-to-t from-black to-black/0 px-[20px] pb-[20px]">
                             {offers?.map((offer) => (
                                 <div key={offer.id} className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main/70 bg-main2/30">
