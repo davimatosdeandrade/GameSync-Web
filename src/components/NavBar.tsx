@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Home, Gamepad2 } from "lucide-react";
+import { Home, Gamepad2, ShoppingCart } from "lucide-react";
 import SearchInput from "./SearchInput";
 import Button from "./Button";
 import { getCatalog } from "../services/api";
@@ -30,6 +30,7 @@ export default function NavBar() {
     const links = [
         { href: "/", label: "Destaques", icon: <Home size={14} /> },
         { href: "/catalog", label: "Catálogo", icon: <Gamepad2 size={14} /> },
+        { href: "/cart", label: "Carrinho", icon: <ShoppingCart size={14} /> },
     ];
 
     // Sincroniza o input com a URL na página de catálogo

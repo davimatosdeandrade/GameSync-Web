@@ -4,10 +4,9 @@ import Image from "next/image";
 import ScrollDiv from "@/src/components/ScrollDiv";
 import ImageCarousel from "@/src/components/ImageCarousel";
 import Button from "@/src/components/Button";
-import { ShoppingCart, Monitor, Captions, AudioLines, Check } from "lucide-react";    
+import { ShoppingCart, Monitor, Captions, AudioLines, Check, EllipsisVertical } from "lucide-react";    
 import { getProductById, getSimilarProducts } from "@/src/services/api";
 import { notFound } from "next/navigation";
-import { EllipsisVertical } from "lucide-react";
 
 interface ProductPageProps {
     params: Promise<{ id: string }>;
