@@ -46,3 +46,9 @@ export async function getProductById(id: string | number): Promise<ProductDetail
         cache: 'no-store',
     });
 }
+
+export async function getSimilarProducts(id: string | number): Promise<ProductSimpleDetail[]> {
+    return fetcher<ProductSimpleDetail[]>(`/product/${id}/similar`, {
+        next: { revalidate: 120 }, // Revalida a cada 2 minutos
+    });
+}

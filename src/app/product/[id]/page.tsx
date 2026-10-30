@@ -5,7 +5,7 @@ import ScrollDiv from "@/src/components/ScrollDiv";
 import ImageCarousel from "@/src/components/ImageCarousel";
 import Button from "@/src/components/Button";
 import { ShoppingCart, Monitor, Captions, AudioLines, Check } from "lucide-react";    
-import { getProductById } from "@/src/services/api";
+import { getProductById, getSimilarProducts } from "@/src/services/api";
 import { notFound } from "next/navigation";
 import { EllipsisVertical } from "lucide-react";
 
@@ -44,11 +44,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
         (typeof product.medias?.[0] === "string" ? product.medias[0] : product.medias?.[0]?.url) || 
         "/placeholder.jpg";
 
+    const similarproducts = await getSimilarProducts(id);
+
     return (
         <>
             <Title 
                 name={product.name} 
-                buttons={<Button icon={<EllipsisVertical size={14} />} />}
+                buttons={<Button text="Configurar" icon={<EllipsisVertical size={14} />} size={3}/>}
             />
             
             <div className="w-full px-[37px]">
@@ -78,7 +80,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             <div className="grid grid-cols-7 w-full py-[20px] px-[37px] gap-[20px]">
                 <div className="col-span-7">
-                    <Button icon={<ShoppingCart size={14} />} text={`${lowestPrice !== null && highestPrice !== null ? (lowestPrice !== highestPrice ? `Comprar entre R$${lowestPrice.toFixed(2)} e R$${highestPrice.toFixed(2)}` : `Comprar R$${highestPrice.toFixed(2)}`) : "Quero saber quando tiver uma oferta disponível!"}`}/>
+                    <Button icon={<ShoppingCart size={14} />} text={`${lowestPrice !== null && highestPrice !== null ? (lowestPrice !== highestPrice ? `Comprar entre R$${lowestPrice.toFixed(2)} e R$${highestPrice.toFixed(2)}` : `Comprar R$${highestPrice.toFixed(2)}`) : "Quero saber quando tiver uma oferta disponível!"}`} size={1}/>
                 </div>
             </div>
 
@@ -133,6 +135,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <ImageCarousel name={product.name} images={product.medias} />
                 </div> 
             </div>
+            <ProductCarousel 
+                name={"Produtos similares"}
+                products={similarproducts}
+            />
         </>
     );
 }

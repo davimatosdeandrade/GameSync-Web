@@ -29,7 +29,6 @@ export default function ImageCarousel({ name = "", images = [] }: ImageCarouselP
     const [zoom, setZoom] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
-    // Converte os itens para extrair sempre a string da URL
     const imageUrls = images.map((img) => (typeof img === "string" ? img : img.url));
 
     if (!imageUrls.length) return null;
@@ -46,30 +45,27 @@ export default function ImageCarousel({ name = "", images = [] }: ImageCarouselP
                 className="w-full h-full relative bg-button rounded-[20px]"
             >       
 
+                <div 
+                    onClick={() => setZoom(true)} 
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    className="absolute top-0 left-0 w-full h-full rounded-[20px] duration-300 transition border-2 border-transparent 
+                    hover:border-icon z-1 hover:cursor-pointer"
+                />
 
-<div 
-    onClick={() => setZoom(true)} 
-    // 2. Controlamos o estado nos eventos de mouse da própria div
-    onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}
-    className="absolute top-0 left-0 w-full h-full rounded-[20px] duration-300 transition border-2 border-transparent 
-    hover:border-icon z-1 hover:cursor-pointer"
-/>
+                {imageUrls.map((url, index) => (
+                    <SwiperSlide key={`main-${url}-${index}`} className="relative overflow-hidden">
+                        <Image
+                            src={url}
+                            alt={`${name} - Slide ${index + 1}`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
 
-{imageUrls.map((url, index) => (
-    <SwiperSlide key={`main-${url}-${index}`} className="relative overflow-hidden">
-        <Image
-            src={url}
-            alt={`${name} - Slide ${index + 1}`}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
+                            className={`object-cover duration-300 transition ${isHovered ? 'scale-102' : 'scale-100'}`}
+                        />
+                    </SwiperSlide>
+                ))}
 
-            className={`object-cover duration-300 transition ${isHovered ? 'scale-102' : 'scale-100'}`}
-        />
-    </SwiperSlide>
-))}
-
-                
                 {imageUrls.length > 1 && (
                     <>
                         <Button
@@ -77,12 +73,14 @@ export default function ImageCarousel({ name = "", images = [] }: ImageCarouselP
                             onClick={() => mainSwiperRef.current?.slidePrev()}
                             position="absolute top-1/2 -translate-y-1/2 left-[20px] z-10"
                             cn="bg-button/50 shadow-button/50"
+                            size={2}
                         />
                         <Button
                             icon={<ChevronRight size={14} />}
                             onClick={() => mainSwiperRef.current?.slideNext()}
                             position="absolute top-1/2 -translate-y-1/2 right-[20px] z-10"
                             cn="bg-button/50 shadow-button/50"
+                            size={2}
                         />
                     </>
                 )}
@@ -95,7 +93,7 @@ export default function ImageCarousel({ name = "", images = [] }: ImageCarouselP
                         <Title
                             name={name}
                             buttons={
-                                <Button icon={<X size={14} />} onClick={() => setZoom(false)} position="relative" />
+                                <Button icon={<X size={14} />} onClick={() => setZoom(false)} position="relative" size={3}/>
                             }
                         />
                         <Swiper
@@ -130,12 +128,14 @@ export default function ImageCarousel({ name = "", images = [] }: ImageCarouselP
                                         onClick={() => modalSwiperRef.current?.slidePrev()}
                                         position="absolute top-1/2 -translate-y-1/2 left-[40px] z-10"
                                         cn="bg-button/50 shadow-button/50"
+                                        size={2}
                                     />
                                     <Button
                                         icon={<ChevronRight size={14} />}
                                         onClick={() => modalSwiperRef.current?.slideNext()}
                                         position="absolute top-1/2 -translate-y-1/2 right-[40px] z-10"
                                         cn="bg-button/50 shadow-button/50"
+                                        size={2}
                                     />
                                 </>
                             )}

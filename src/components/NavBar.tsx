@@ -113,15 +113,15 @@ export default function NavBar() {
                             }}
                             className="group flex items-center justify-between w-full h-[37px] px-[20px] bg-button rounded-full hover:cursor-pointer"
                         >
-                            <h4 className="group-hover:text-text1">{product.name}</h4>
-                            <h4 className="group-hover:text-text1">{getPrice(product.offers)}</h4>
+                            <h4 className="group-hover:text-text1 transition duration-300">{product.name}</h4>
+                            <h4 className="group-hover:text-text1 transition duration-300">{getPrice(product.offers)}</h4>
                         </div>
                     ))}
                 </div>
             </div>
 
             {links.map((link) => (
-                <Button key={link.href} icon={link.icon} active={pathname === link.href} onClick={() => router.push(link.href)}/>
+                <Button key={link.href} icon={link.icon} active={pathname === link.href} onClick={() => router.push(link.href)} size={2}/>
             ))}
         </div>
     );

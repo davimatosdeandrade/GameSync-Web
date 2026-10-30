@@ -16,7 +16,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
         <>
             <Title
                 name={`${products.length} resultados`}
-                buttons={<Button icon={<SlidersHorizontal size={14} />} />}
+                buttons={<Button text="Filtrar" icon={<SlidersHorizontal size={14} />} size={3}/>}
             />
             <div className="grid grid-cols-7 gap-[20px] w-full px-[37px]">
                 {products.map((product) => (

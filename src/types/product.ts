@@ -30,6 +30,7 @@ export interface ProductSimpleDetail {
     name: string;
     type: EntityRef;
     cover: Media | null;
+    categories: EntityRef[];
     offers: Offer[];
 }
 

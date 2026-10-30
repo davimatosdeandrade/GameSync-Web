@@ -31,7 +31,7 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
         <>
         <Title 
             name={name} 
-            buttons={<Button icon={<ArrowRight size={14} />} />}
+            buttons={<Button text="Ver mais" icon={<ArrowRight size={14} />} size={3} />}
         />
         <Swiper
             onSwiper={(swiper) => {
@@ -53,10 +53,10 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
                 </SwiperSlide>
             ))}
             <Button icon={<ChevronLeft size={14} />} disabled={isBeginning} onClick={() => swiperRef.current?.slidePrev()} 
-                position="absolute top-1/2 -translate-y-1/2 left-[60px] z-1" cn="bg-button/50 shadow-button/50"
+                position="absolute top-1/2 -translate-y-1/2 left-[60px] z-1" cn="bg-button/50 shadow-button/50" size={2}
             />
             <Button icon={<ChevronRight size={14} />} disabled={isEnd} onClick={() => swiperRef.current?.slideNext()} 
-                position="absolute top-1/2 -translate-y-1/2 right-[60px] z-1" cn="bg-button/50 shadow-button/50"
+                position="absolute top-1/2 -translate-y-1/2 right-[60px] z-1" cn="bg-button/50 shadow-button/50" size={2}
             />
         </Swiper>
         </>
