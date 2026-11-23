@@ -4,7 +4,8 @@ import Image from "next/image";
 import ScrollDiv from "@/src/components/ScrollDiv";
 import ImageCarousel from "@/src/components/ImageCarousel";
 import Button from "@/src/components/Button";
-import { ShoppingCart, Monitor, Captions, AudioLines, Check, EllipsisVertical } from "lucide-react";    
+import NotFoundCard from "@/src/components/NotFoundCard";
+import { ShoppingCart, Monitor, Captions, AudioLines, Check, EllipsisVertical, Languages } from "lucide-react";    
 import { getProductById, getSimilarProducts } from "@/src/services/api";
 import { notFound } from "next/navigation";
 
@@ -86,27 +87,35 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="grid grid-cols-7 flex gap-[20px] w-full px-[37px]">
                 <div className="col-span-1 hSizeCard bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">
                     <h1>Idiomas</h1>
-                    <ScrollDiv>
-                        {product.languages.length > 0 ?
-                        <div className="flex justify-between w-full">
-                            <h3>Opções</h3>
-                            <div className="flex items-center text-icon gap-[6px]">
-                                <AudioLines size={14} />
-                                <Monitor size={14} />
-                                <Captions size={14} />
-                            </div>
-                        </div> : <h4>Nenhum idioma disponível.</h4>}
-                        {product.languages.map((language) => (
-                            <div key={language.id} className="flex justify-between w-full">
-                                <h4>{language.name}</h4>
-                                <div className="flex items-center text-text2 gap-[6px]">
-                                    {language.audio === true && <Check size={14} />}
-                                    {language.interface === true && <Check size={14} />}
-                                    {language.subtitles === true && <Check size={14} />}
+                    {product.languages.length > 0 ? (
+                        <ScrollDiv>
+                            <div className="flex justify-between w-full">
+                                <h3>Opções</h3>
+                                <div className="flex items-center text-icon gap-[6px]">
+                                    <AudioLines size={14} />
+                                    <Monitor size={14} />
+                                    <Captions size={14} />
                                 </div>
                             </div>
-                        ))}
-                    </ScrollDiv>
+                            {product.languages.map((language) => (
+                                <div key={language.id} className="flex justify-between w-full">
+                                    <h4>{language.name}</h4>
+                                    <div className="flex items-center text-text2 gap-[6px]">
+                                        {language.audio === true && <Check size={14} />}
+                                        {language.interface === true && <Check size={14} />}
+                                        {language.subtitles === true && <Check size={14} />}
+                                    </div>
+                                </div>
+                            ))}
+                        </ScrollDiv>
+                    ) : (
+                        <NotFoundCard
+                            icon={<Languages size={28} />}
+                            title="Sem idiomas"
+                            message="Nenhum idioma foi encontrado para este produto."
+                            border={false}
+                        />
+                    )}
                 </div>
 
                 <div className="col-span-3 hSizeCard bg-main rounded-[20px] p-[20px] flex flex-col gap-[20px]">

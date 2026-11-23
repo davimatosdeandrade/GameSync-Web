@@ -31,7 +31,7 @@ export default function ProductCarousel({ name, products}: ProductCarouselProps)
         <>
         <Title 
             name={name} 
-            buttons={<Button text="Ver mais" icon={<ArrowRight size={14} />} size={3} />}
+            buttons={<Button text="Ver tudo" icon={<ArrowRight size={14} />} size={3} />}
         />
         <Swiper
             onSwiper={(swiper) => {
