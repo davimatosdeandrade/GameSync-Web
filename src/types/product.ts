@@ -42,6 +42,7 @@ export interface ProductDetail {
   type: EntityRef | null;
   distributor: EntityRef | null;
   developer: EntityRef | null;
+  cover: Media | null;
   medias: Media[];
   languages: ProductLanguage[];
   categories: EntityRef[];

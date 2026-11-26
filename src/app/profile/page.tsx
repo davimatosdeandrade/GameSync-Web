@@ -1,20 +1,67 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import Button from "@/src/components/Button";
+import { LoginButton } from "@/src/components/login";
 import NotFoundCard from "@/src/components/NotFoundCard";
 import Title from "@/src/components/Title";
+import { getSessionUser, logout } from "@/src/services/auth";
+import { User as UserType } from "@/src/types/user";
 import { User, Mail, Gamepad2, ShoppingBag, Settings, LogOut, Lock, KeyRound, Check, Save, Trash2} from "lucide-react";
 
 type ProfileTab = "items" | "orders" | "account";
 
 export default function ProfilePage() {
+    const router = useRouter();
     const [activeTab, setActiveTab] = useState<ProfileTab>("items");
+    const [user, setUser] = useState<UserType | null | undefined>(undefined);
+
+    useEffect(() => {
+        const loadUser = () => {
+            getSessionUser().then(setUser);
+        };
+        loadUser();
+        window.addEventListener("auth-change", loadUser);
+        return () => window.removeEventListener("auth-change", loadUser);
+    }, []);
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            setUser(null);
+            toast.info("Você saiu da sua conta.");
+            router.refresh();
+        } catch {
+            toast.error("Erro ao sair da conta.");
+        }
+    };
+
+    if (user === undefined) {
+        return <Title name="Perfil" />;
+    }
+
+    if (!user) {
+        return (
+            <>
+                <Title name="Perfil" />
+                <div className="w-full px-[37px]">
+                    <NotFoundCard
+                        icon={<Lock size={28} />}
+                        title="Acesso restrito"
+                        message="Você não tem acesso a esta página porque ainda não fez login."
+                        button={<LoginButton />}
+                    />
+                </div>
+            </>
+        );
+    }
 
     return (
         <>
             <Title
                 name="Perfil"
-                buttons={<Button text="Sair" icon={<LogOut size={14} />} size={3} />}
+                buttons={<Button text="Sair" icon={<LogOut size={14} />} onClick={handleLogout} size={3} />}
             />
 
             <div className="flex flex-col gap-[20px] w-full px-[37px]">
@@ -25,18 +72,18 @@ export default function ProfilePage() {
                         </div>
 
                         <div className="flex flex-col gap-[10px]">
-                            <h1>Olá, Usuário</h1>
+                            <h1>Olá, {user.name}</h1>
                             <div className="flex items-center gap-[14px] flex-wrap">
                                 <div className="flex items-center gap-[8px] px-[14px] h-[37px] bg-main2 rounded-[20px]">
                                     <Mail size={14} className="text-icon" />
-                                    <h4>usuario@email.com</h4>
+                                    <h4>{user.email}</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-[20px] w-full">
+                <div className="flex items-center gap-[20px] w-full z-1">
                     <Button
                         text="Meus Itens"
                         icon={<Gamepad2 size={14} />}
@@ -89,7 +136,7 @@ export default function ProfilePage() {
                                             <input
                                                 type="text"
                                                 placeholder="Seu nome"
-                                                defaultValue="Nome do Usuário"
+                                                defaultValue={user.name}
                                                 className="w-full h-full bg-transparent text-[14px] font-[400] outline-0 pl-[14px] pr-[40px] rounded-full text-title placeholder:text-placeholder"
                                             />
                                             <User className="absolute top-[12px] right-[12px]" size={14} />
@@ -102,7 +149,7 @@ export default function ProfilePage() {
                                             <input
                                                 type="email"
                                                 placeholder="seu@email.com"
-                                                defaultValue="usuario@email.com"
+                                                defaultValue={user.email}
                                                 className="w-full h-full bg-transparent text-[14px] font-[400] outline-0 pl-[14px] pr-[40px] rounded-full text-title placeholder:text-placeholder"
                                             />
                                             <Mail className="absolute top-[12px] right-[12px]" size={14} />
@@ -115,7 +162,7 @@ export default function ProfilePage() {
                                             <div className="flex items-center justify-between px-[14px] h-[37px] bg-main2 rounded-[20px]">
                                                 <h3>Status da conta</h3>
                                                 <div className="flex items-center px-[10px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-green-400/70 bg-green-400/20">
-                                                    <h4 className="text-green-300">Ativa</h4>
+                                                    <h4 className="text-green-300">{user.active ? "Ativa" : "Inativa"}</h4>
                                                 </div>
                                             </div>
                                             <div className="flex items-center justify-between px-[14px] h-[37px] bg-main2 rounded-[20px]">

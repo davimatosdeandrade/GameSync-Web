@@ -12,7 +12,7 @@ import { useRef, useState } from "react";
 import Button from "./Button";
 import { ArrowRight } from "lucide-react";
 
-type ProductCarouselProps = {
+interface ProductCarouselProps {
     name: string;
     products: ProductSimpleDetail[];
 } 

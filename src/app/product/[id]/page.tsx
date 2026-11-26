@@ -5,45 +5,20 @@ import ScrollDiv from "@/src/components/ScrollDiv";
 import ImageCarousel from "@/src/components/ImageCarousel";
 import Button from "@/src/components/Button";
 import NotFoundCard from "@/src/components/NotFoundCard";
-import { ShoppingCart, Monitor, Captions, AudioLines, Check, EllipsisVertical, Languages } from "lucide-react";    
-import { getProductById, getSimilarProducts } from "@/src/services/api";
-import { notFound } from "next/navigation";
+import { ShoppingCart, Monitor, Captions, AudioLines, Check, EllipsisVertical, Languages, ImageOff } from "lucide-react";    
+import { getProductByPk, getSimilarProducts } from "@/src/services/api";
+import { getPrice } from "@/src/utils/price";
 
 interface ProductPageProps {
     params: Promise<{ id: string }>;
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-    const { id } = await params;
-    
-    let product;
-    try {
-        product = await getProductById(Number(id));
-    } catch (error) {
-        notFound();
-    }
-
-    if (!product) return notFound();
-
+    const { id } = await params; 
+    const product = await getProductByPk(Number(id));
     const offers = product?.offers ?? [];
-    const prices = offers.map((o) => Number(o.price));
-    const lowestPrice = prices.length > 0 ? Math.min(...prices) : null;
-    const highestPrice = prices.length > 0 ? Math.max(...prices) : null;
-
-    const coverMedia = product.medias?.find((media) => {
-        if (typeof media === "string") return false;
-        
-        const isCover = media.type?.toLowerCase() === "cover";
-        const is16by9 = media.aspect === "16:9";
-        
-        return isCover && is16by9;
-    });
-
-    const mainCoverUrl = 
-        coverMedia?.url || 
-        (typeof product.medias?.[0] === "string" ? product.medias[0] : product.medias?.[0]?.url) || 
-        "/placeholder.jpg";
-
+    const price = getPrice(offers, null);
+    const coverUrl = product.cover?.url || null;
     const similarproducts = await getSimilarProducts(id);
 
     return (
@@ -55,15 +30,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
             
             <div className="w-full px-[37px]">
                 <div className="relative w-full hSizeCard bg-main rounded-[20px] overflow-hidden">
-                    <Image 
-                        src={mainCoverUrl} 
-                        alt={product.name || "Produto"} 
-                        fill 
-                        className="object-cover" 
-                        priority
-                    />  
-                    <div className="absolute flex flex-col justify-end w-full h-full bg-black/10 rounded-[20px]">
-                        <div className="flex gap-[14px] w-full right-0 bottom-0 bg-linear-to-t from-black to-black/0 px-[20px] pb-[20px]">
+                    {coverUrl ? (
+                        <Image 
+                            src={coverUrl} 
+                            alt={product.name || "Produto"} 
+                            fill 
+                            className="object-cover" 
+                            priority
+                        />
+                    ) : (
+                        <NotFoundCard
+                            icon={<ImageOff size={28} />}
+                            title="Nenhuma imagem encontrada"
+                            message="As imagens deste produto serão adicionadas futuramente."
+                        />
+                    )}
+                    <div className={`absolute top-0 left-0 flex flex-col justify-end w-full h-full rounded-[20px] ${coverUrl ? "bg-black/10" : ""}`}>
+                        <div className={`flex gap-[14px] w-full right-0 bottom-0 ${coverUrl ? "bg-linear-to-t from-black to-black/0 px-[20px] pb-[20px]" : "px-[34px] pb-[34px]"}`}>
                             {offers?.map((offer) => (
                                 <div key={offer.id} className="flex items-center px-[14px] h-[20px] rounded-[20px] shadow-[0_0_0_2px] shadow-main/70 bg-main2/30">
                                     <h4>{offer.store.name}</h4>
@@ -80,7 +63,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             <div className="grid grid-cols-7 w-full py-[20px] px-[37px] gap-[20px]">
                 <div className="col-span-7">
-                    <Button icon={<ShoppingCart size={14} />} text={`${lowestPrice !== null && highestPrice !== null ? (lowestPrice !== highestPrice ? `Comprar entre R$${lowestPrice.toFixed(2)} e R$${highestPrice.toFixed(2)}` : `Comprar R$${highestPrice.toFixed(2)}`) : "Quero saber quando tiver uma oferta disponível!"}`} size={1}/>
+                    <Button icon={<ShoppingCart size={14} />} text={price ? `Comprar ${price.replace("Entre", "entre")}` : "Quero saber quando tiver uma oferta disponível!"} size={1}/>
                 </div>
             </div>
 
@@ -143,10 +126,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <ImageCarousel name={product.name} images={product.medias} />
                 </div> 
             </div>
-            <ProductCarousel 
-                name={"Produtos similares"}
-                products={similarproducts}
-            />
+            <ProductCarousel name={"Produtos similares"} products={similarproducts} />
         </>
     );
 }

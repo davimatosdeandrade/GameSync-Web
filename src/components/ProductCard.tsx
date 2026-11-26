@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { ProductSimpleDetail } from "../types/product";
+import { getPrice } from "../utils/price";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,8 +11,15 @@ interface CardProductProps {
 }
 
 export default function ProductCard({ product, aspect }: CardProductProps) {
+    const offers = product?.offers ?? [];
+    const price = getPrice(offers, null);
+    const coverUrl = product?.cover?.url || "/placeholder.png";
     const ref = useRef<HTMLDivElement>(null);
     const [visible, setvisible] = useState(false);
+    const cardProductAspect = {
+        916: "aspect-[9/16]",
+        169: "aspect-[16/9]",
+    };
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -23,25 +31,13 @@ export default function ProductCard({ product, aspect }: CardProductProps) {
         return () => observer.disconnect();
     }, []);
 
-    const cardProductAspect = {
-        916: "aspect-[9/16]",
-        169: "aspect-[16/9]",
-    };
-
-    const offers = product?.offers ?? [];
-    const prices = offers.map((o) => Number(o.price));
-    const lowestPrice = prices.length > 0 ? Math.min(...prices) : null;
-    const highestPrice = prices.length > 0 ? Math.max(...prices) : null;
-
-    const imageUrl = product?.cover?.url || "/placeholder.png";
-
     return (
         <Link href={`/product/${product?.id}`}>
             <div className="group hSizeCard relative bg-button duration-300 transition rounded-[20px] overflow-hidden hover:cursor-pointer">
                 <div className="absolute inset-0 rounded-[20px] border-2 border-transparent group-hover:border-icon duration-300 transition z-1 pointer-events-none" />
 
                 <Image 
-                    src={imageUrl} 
+                    src={coverUrl} 
                     alt={product?.name || "Produto"} 
                     fill 
                     sizes={cardProductAspect[aspect]} 
@@ -55,13 +51,7 @@ export default function ProductCard({ product, aspect }: CardProductProps) {
                     >
                         <h2>{product?.name}</h2>
 
-                        {lowestPrice !== null && highestPrice !== null && (
-                            lowestPrice !== highestPrice ? (
-                                <h3>Entre R${lowestPrice.toFixed(2)} e R${highestPrice.toFixed(2)}</h3>
-                            ) : (
-                                <h3>R${highestPrice.toFixed(2)}</h3>
-                            )
-                        )}
+                        {price && <h3>{price}</h3>}
 
                         <div className="flex gap-[14px] w-full mt-[6px] flex-wrap-reverse">
                             {offers.map((offer) => (

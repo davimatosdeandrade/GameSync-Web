@@ -5,9 +5,10 @@ interface SearchInputProps {
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+    onBlur?: () => void;
 }
 
-export default function SearchInput({ placeholder, value, onChange, onKeyDown }: SearchInputProps) {
+export default function SearchInput({ placeholder, value, onChange, onKeyDown, onBlur }: SearchInputProps) {
     return (
         <div className="relative h-[37px] min-w-[calc((100vw-40px)/5)] rounded-full transition duration-300 bg-main2 shadow-[0_0_0_2px] 
             shadow-button hover:shadow-icon text-text2 hover:text-icon hover:cursor-pointer focus-within:shadow-icon focus-within:text-icon">
@@ -17,6 +18,7 @@ export default function SearchInput({ placeholder, value, onChange, onKeyDown }:
                 value={value}
                 onChange={onChange}
                 onKeyDown={onKeyDown}
+                onBlur={onBlur}
                 className="w-full h-full bg-bg2 text-[14px] font-[400] outline-0 pl-[10px] pr-[40px] rounded-full text-title 
                 placeholder:text-placeholder"
             />
